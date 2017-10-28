@@ -1,0 +1,127 @@
+<style lang='less'>
+.start {
+  font-size: 20px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  margin: 10px 10px 10px 10px;
+}
+.start-stop {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.awards {
+  width: 270px;
+  height: 200px;
+  display: flex;
+  flex-direction: center;
+  margin: 10px 110px 10px 80px;
+}
+.congratulations {
+  font-size: 30;
+  color: red;
+  display:  flex;
+  justify-content: center;
+}
+</style>
+<template>
+<view>
+<view class="start-stop">
+  <view>
+  <text class="start" @tap="start">开始抽奖</text>
+  </view>
+  <view>
+  <text class="start" @tap="stop">停止</text>
+  </view>
+   <view>
+  <text class="start">随机</text>
+  </view>
+  </view>
+  <view class="car-awards">
+    <image class="awards" src="{{awards}}"></image>
+  </view>
+  <view>
+    <!-- {{text[index][1]}} -->
+    <text class="congratulations">{{texts}}</text>
+  </view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '养生保健__百科'
+  }
+  data = {
+    numeral: [
+      'http://img4.imgtn.bdimg.com/it/u=3804248273,3060415275&fm=27&gp=0.jpg',
+      'http://a1.ifengimg.com/autoimg/89/56/1745689_3.jpg',
+      'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1509113906430&di=9e721622b2b2c39f425b3edaf49d2292&imgtype=0&src=http%3A%2F%2Fpic23.nipic.com%2F20120913%2F6488038_124557200143_2.jpg'
+    ],
+    // awardArr: [
+    //   [
+    //     'http://pic39.nipic.com/20140307/8821914_191200664000_2.jpg',
+    //     '谢谢惠顾'
+    //   ],
+    //   [
+    //     'http://pic39.nipic.com/20140307/8821914_191200664000_2.jpg',
+    //     '谢谢惠顾'
+    //   ],
+    //   [
+    //     'http://pic39.nipic.com/20140307/8821914_191200664000_2.jpg',
+    //     '谢谢惠顾'
+    //   ]
+    // ],
+    text: [
+      '恭喜您获得宝马1系轿车一辆',
+      '恭喜您获得宝马X6越野车一辆',
+      '谢谢惠顾,再接再厉'
+    ],
+    awards: '',
+    interval: null,
+    num: '',
+    index: null,
+    texts: ''
+  }
+  methods = {
+    start () {
+      let self = this
+      // let index = 0
+      self.index = Math.floor(Math.random() * 3)
+      console.log(self.index)
+      // self.awards = self.numeral[self.index][0]
+      self.awards = self.numeral[self.index]
+      self.texts = self.text[self.index]
+      self.setData({
+        // awards: self.numeral[self.index][0]
+        awards: self.numeral[self.index]
+      })
+    },
+    stop () {
+      let self = this
+      clearInterval(self.interval)
+    },
+    random () {
+      let self = this
+      let index = 0
+      self.awards = self.numeral[index]
+      self.setData({
+        awards: self.numeral[index]
+      })
+      self.interval = setInterval(() => {
+        self.awards = self.numeral[index]
+        self.setData({
+          awards: self.numeral[index]
+        })
+        index = Math.floor(Math.random() * 5 + 3)
+         // if (index === 8) {
+         //   index = 0
+         // }
+      }, 600)
+    }
+  }
+  onLoad() {
+  }
+}
+</script>

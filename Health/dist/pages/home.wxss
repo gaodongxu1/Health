@@ -1,0 +1,1 @@
+.start{font-size:20px;color:black;display:flex;justify-content:center;margin:10px 10px 10px 10px}.start-stop{display:flex;flex-direction:row;justify-content:center}.awards{width:270px;height:200px;display:flex;flex-direction:center;margin:10px 110px 10px 80px}.congratulations{font-size:30;color:red;display:flex;justify-content:center}

@@ -1,0 +1,21 @@
+
+<view>
+<view class="start-stop">
+  <view>
+  <text class="start" bindtap="start">开始抽奖</text>
+  </view>
+  <view>
+  <text class="start" bindtap="stop">停止</text>
+  </view>
+   <view>
+  <text class="start">随机</text>
+  </view>
+  </view>
+  <view class="car-awards">
+    <image class="awards" src="{{awards}}"/>
+  </view>
+  <view>
+    <!-- {{text[index][1]}} -->
+    <text class="congratulations">{{texts}}</text>
+  </view>
+  </view>
